@@ -1,4 +1,2 @@
 # reservax
-Reservaciones en linea
-Para tu Negocio
-Holas una linea mas
+Reservaciones en linea. Para tu negocio
