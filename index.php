@@ -17,16 +17,14 @@ header('Location: home.php');
 <script src="js/jquery.ui.shake.js"></script>
 	<script>
 			$(document).ready(function() {
+
+			$('#login').click(function() {
+  			var username=$("#username").val();
+  			var password=$("#password").val();
+  		    var dataString = 'username='+username+'&password='+password;
+  			if($.trim(username).length>0 && $.trim(password).length>0) {
 			
-			$('#login').click(function()
-			{
-			var username=$("#username").val();
-			var password=$("#password").val();
-		    var dataString = 'username='+username+'&password='+password;
-			if($.trim(username).length>0 && $.trim(password).length>0)
-			{
-			
- 
+
 			$.ajax({
             type: "POST",
             url: "server/ajaxLogin.php",
@@ -47,12 +45,12 @@ header('Location: home.php');
             }
             }
             });
-			
+
 			}
 			return false;
 			});
-			
-				
+
+
 			});
 		</script>
 </head>
@@ -63,19 +61,19 @@ header('Location: home.php');
 
 <div id="box">
 <form action="" method="post">
-<label>Usuario</label> 
+<label>Usuario</label>
 <input type="text" name="username" class="input" autocomplete="off" id="username"/>
 <label>Contraseña</label>
 <input type="password" name="password" class="input" autocomplete="off" id="password"/><br/>
-<input type="submit" class="button button-primary" value="Entrar" id="login"/> 
-<span class='msg'></span> 
+<input type="submit" class="button button-primary" value="Entrar" id="login"/>
+<span class='msg'></span>
 
 <div id="error">
 
-</div>	
+</div>
 
 </div>
-</form>	
+</form>
 </div>
 
 </div>

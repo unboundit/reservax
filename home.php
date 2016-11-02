@@ -22,7 +22,7 @@ header('Location: index.php');
       {
       var name = $(this).attr("name");
       var result = confirm("Esta seguro de confirmar la Reservación");
-      var dataString = "confirma="+name;      
+      var dataString = "confirma="+name;
       if(result == true)
       {
         $.ajax({
@@ -50,7 +50,7 @@ header('Location: index.php');
       {
         var name = $(this).attr("name");
         var result = confirm("Esta seguro de cancelar la Reservación");
-        var dataString = "cancela="+name;     
+        var dataString = "cancela="+name;
         if(result == true)
         {
           $.ajax({
@@ -90,46 +90,46 @@ header('Location: index.php');
   $horasale=$row['hora_salida'];
   $result = substr($horasale, 0, 2);
   $resultado = Array();
-  
+
   if ($idnegocio == 1) {
     $sql= "SELECT * FROM reservaciones where negocioid = $idnegocio and estatus = 'A' order by hora_llegada";
-    $normal = mysqli_query($db,$sql); 
+    $normal = mysqli_query($db,$sql);
     muestraTablas2($normal);
   }
   else
   {
   	$consulta1 = "SELECT * FROM reservaciones where negocioid = $idnegocio and fecha_reserva = CURDATE() and hora_llegada >= '$horaentra' and estatus = 'A' order by hora_llegada;";
     $consulta2 = "SELECT * FROM reservaciones where negocioid = $idnegocio and fecha_reserva = DATE_ADD(CURDATE(),INTERVAL 01 DAY) and hora_llegada <= '$horasale' and estatus = 'A' order by hora_llegada";
-      
-  	
+
+
   	$query1=mysqli_query($db,$consulta1);
   	$query2=mysqli_query($db,$consulta2);
-  	
+
   	if (mysqli_num_rows($query1) == 0 && mysqli_num_rows($query2) == 0)
   	{
   		echo "<p>No hay reservaciones que mostrar</p>";
     }
   	else
-    {  
+    {
       if($result<="06")
       {
     		$sql= "SELECT * FROM reservaciones where negocioid = $idnegocio and fecha_reserva = CURDATE() and hora_llegada >= '$horaentra' and estatus = 'A' order by hora_llegada;";
     		$sql .=  "SELECT * FROM reservaciones where negocioid = $idnegocio and fecha_reserva = DATE_ADD(CURDATE(),INTERVAL 01 DAY) and hora_llegada <= '$horasale' and estatus = 'A' order by hora_llegada";
     		$multi = mysqli_multi_query($db,$sql);
-    	    
+
     	 	muestraTablas($db);
     	}
-    	
+
     	else
       {
-    		$sql= "SELECT * FROM reservaciones where negocioid = $idnegocio and fecha_reserva = CURDATE() and( hora_llegada >= '$horaentra' and hora_llegada <= '$horasale') and estatus = 'A' order by hora_llegada";		
-    		$normal = mysqli_query($db,$sql);	
+    		$sql= "SELECT * FROM reservaciones where negocioid = $idnegocio and fecha_reserva = CURDATE() and( hora_llegada >= '$horaentra' and hora_llegada <= '$horasale') and estatus = 'A' order by hora_llegada";
+    		$normal = mysqli_query($db,$sql);
     		muestraTablas2($normal);
   		}
   	}
   }
 
-  function muestraTablas($db) 
+  function muestraTablas($db)
   {
     $html = "<table>";
     $html .= "<tr>
@@ -162,7 +162,7 @@ header('Location: index.php');
     echo $html;
   }
 
-  function muestraTablas2($result) 
+  function muestraTablas2($result)
 
   {
     while ($tsArray =  mysqli_fetch_assoc($result))
